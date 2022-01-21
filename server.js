@@ -12,6 +12,10 @@ const io = socketio(server);
 io.on('connection', (sock) => {
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
+
+  sock.on('nosto', ({kortti}) => io.emit('nosto', {kortti}))  //Kortti on se kortti joka juuri nostettiin
+
+  sock.on('piirto', ({x,y}) => io.emit('piirto', {x,y}))
 });
 
 
