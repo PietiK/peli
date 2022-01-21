@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div id="kokosivu">
+      <div id="vasenyla">Tyhjä ruutu</div>
+      <div id="keskiyla">Yksi pelaaja</div>
+      <div id="oikeayla">Tyhjä ruutu</div>
+      <div id="vasenkeski">Yksi pelaaja</div>
+      <div id="keski">Poyta
+        <button onclick="startGame()">ALOITA</button>
+        <button id="nosta" onclick="searching()">Nosta kortti</button>
+        <button onclick="sellAndHire()">Lopeta nostaminen</button>
+        <button onclick="clearTable()">Tyhjennä pöytä</button>
+        <div id="kortit"></div>
+      </div>
+      <div id="oikeakeski">Yksi pelaaja</div>
+      <div id="vasenala">Tyhjä ruutu</div>
+      <div id="keskiala">Yksi pelaaja</div>
+      <div id="oikeaala">Tyhjä ruutu</div>
+    </div>
+</body>
+<script src="main.js" ></script>
+
+</html>

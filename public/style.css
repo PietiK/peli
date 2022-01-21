@@ -1,0 +1,54 @@
+#kokosivu {
+  display: grid; 
+  grid-template-columns: 0.7fr 1.6fr 0.7fr; 
+  grid-template-rows: 0.7fr 1.6fr 0.7fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "vasenyla keskiyla oikeayla"
+    "vasenkeski keski oikeakeski"
+    "vasenala keskiala oikeaala"; 
+  width: 100%; 
+  height: 100vh; 
+}
+#vasenyla { grid-area: vasenyla; }
+#keskiyla { grid-area: keskiyla; }
+#oikeayla { grid-area: oikeayla; }
+#vasenkeski { grid-area: vasenkeski; }
+#keski { grid-area: keski; }
+#oikeakeski { grid-area: oikeakeski; }
+#vasenala { grid-area: vasenala; }
+#keskiala { grid-area: keskiala; }
+#oikeaala { grid-area: oikeaala; }
+
+
+
+#vasenyla {
+  background: #DDD;
+}
+
+#keskiyla {
+  background: #AAA;
+}
+
+#oikeayla {
+  background: #DDD;
+}
+
+#vasenkeski {
+  background: #AAA;
+}
+#keski {
+  background: rgb(250, 0, 0);
+}
+#oikeakeski {
+  background: #AAA;
+}
+#vasenala {
+  background: #DDD;
+}
+#keskiala {
+  background: #AAA;
+}
+#oikeaala {
+  background: #DDD;
+}
