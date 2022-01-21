@@ -2,27 +2,32 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const path = require('path');
-
 const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
-
-//const clientPath = `${__dirname}/public`;
-
 
 app.use(express.static(path.join(__dirname, "public")));
 
+const server = http.createServer(app);
+const io = socketio(server);
+
+io.on('connection', (sock) => {
+  sock.emit('message', "Liityit peliin");
+  sock.on('message', (text) => io.emit('message', text));
+});
+
+
 server.on('error', (err) => {
   console.error('Server error:', err);
-})
+});
 
 server.listen(8080, () => {
   console.log('Peli aloitettu portissa 8080')
-})
+});
+
+
 
 //Yhteyksien hallinta
-const connections = [null, null];
-
+//const connections = [null, null];
+/*
 io.on('connection', socket => {
   let playerIndex = -1;
   for (const c in connections) {
@@ -39,4 +44,4 @@ io.on('connection', socket => {
   //ei oteta vielä kolmatta pelaajaa
   if (playerIndex === -1) return;
 })
-
+*/

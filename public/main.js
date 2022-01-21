@@ -1,5 +1,3 @@
-const socket = io();
-
 const sailors = [
   {
     id : '0',
