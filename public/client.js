@@ -54,4 +54,14 @@ const getBoard = (canvas) => {
   sock.on('message', log);
 
   document.querySelector('#chattiform').addEventListener('submit', onChatSubmitted(sock));
+
+  const pakka = document.querySelector('#pakka');
+  const pakkaClick = (e) => {
+    console.log("PAKKA KLIKATTU");
+    sock.emit('takeacard', {poyta});
+  }
+
+  pakka.addEventListener('click', pakkaClick);
+
+
 })();

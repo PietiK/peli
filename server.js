@@ -3,17 +3,24 @@ const express = require('express');
 const socketio = require('socket.io');
 const path = require('path');
 const app = express();
+const createDeck = require('./deck-functions');
 
 app.use(express.static(path.join(__dirname, "public")));
 
 const server = http.createServer(app);
 const io = socketio(server);
 
+const {newDeck, getDeck, getPoyta, takeCard} = createDeck();
+
 io.on('connection', (sock) => {
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
+  sock.emit('deck', getDeck());
 
-  sock.on('nosto', ({kortti}) => io.emit('nosto', {kortti}))  //Kortti on se kortti joka juuri nostettiin
+  sock.on('takeacard', ({poyta}) =>{
+    takeCard();
+    io.emit('message', getPoyta());
+  });  //io.emit('takeacard', {kortti}))  //Kortti on se kortti joka juuri nostettiin
 
   sock.on('piirto', ({x,y}) => io.emit('piirto', {x,y}))
 });
