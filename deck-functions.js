@@ -6,7 +6,7 @@ const startingDeck = [{
   price: 3,
   vp: 1,
   attackpoints: 1,
-  kuvake: './public/images/sailor1.png',
+  kuvake: 'sailor1.png',
 },
 {
   id : '1',
@@ -14,7 +14,7 @@ const startingDeck = [{
   price: 3,
   vp: 1,
   attackpoints: 1,
-  kuvake: './public/images/sailor1.png',
+  kuvake: 'sailor1.png',
 },
 {
   id : '2',
@@ -22,7 +22,7 @@ const startingDeck = [{
   price: 3,
   vp: 1,
   attackpoints: 1,
-  kuvake: './public/images/sailor1.png',
+  kuvake: 'sailor1.png',
 },
 {
   id : '3',
@@ -30,7 +30,7 @@ const startingDeck = [{
   price: 3,
   vp: 1,
   attackpoints: 1,
-  kuvake: './public/images/sailor1.png',
+  kuvake: 'sailor1.png',
 },
 {
   id : '4',
@@ -38,7 +38,7 @@ const startingDeck = [{
   price: 3,
   vp: 1,
   attackpoints: 1,
-  kuvake: './public/images/sailor1.png',
+  kuvake: 'sailor1.png',
 },
 {
   id : '5',
@@ -46,7 +46,7 @@ const startingDeck = [{
   price: 3,
   vp: 1,
   attackpoints: 1,
-  kuvake: './public/images/sailor1.png',
+  kuvake: 'sailor1.png',
 },
 {
   id : '6',
@@ -54,7 +54,7 @@ const startingDeck = [{
   price: 3,
   vp: 1,
   attackpoints: 1,
-  kuvake: './public/images/sailor1.png',
+  kuvake: 'sailor1.png',
 },
 {
   id : '7',
@@ -62,7 +62,7 @@ const startingDeck = [{
   price: 5,
   vp: 2,
   attackpoints: 1,
-  kuvake: './public/images/sailor2.png',
+  kuvake: 'sailor2.png',
 },
 {
   id : '8',
@@ -70,7 +70,7 @@ const startingDeck = [{
   price: 5,
   vp: 2,
   attackpoints: 1,
-  kuvake: './public/images/sailor2.png',
+  kuvake: 'sailor2.png',
 },
 {
   id : '9',
@@ -78,7 +78,7 @@ const startingDeck = [{
   price: 7,
   vp: 3,
   attackpoints: 1,
-  kuvake: './public/images/sailor3.png',
+  kuvake: 'sailor3.png',
 }]//module.array;
 
 const createDeck = () => {
@@ -94,7 +94,10 @@ const createDeck = () => {
   const getPoyta = () => poyta;
 
   const takeCard = () => {
-    poyta.concat(deck.shift);
+    const nostettu = deck.shift();
+    poyta.concat(nostettu);
+    console.log("NOSTETTU ", nostettu);
+    return nostettu;
   }
 
   return {

@@ -5,6 +5,8 @@ const path = require('path');
 const app = express();
 const createDeck = require('./deck-functions');
 
+const fs = require('fs');
+
 app.use(express.static(path.join(__dirname, "public")));
 
 const server = http.createServer(app);
@@ -15,15 +17,25 @@ const {newDeck, getDeck, getPoyta, takeCard} = createDeck();
 io.on('connection', (sock) => {
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
-  sock.emit('deck', getDeck());
+  //sock.emit('deck', getDeck());
 
-  sock.on('takeacard', ({poyta}) =>{
-    takeCard();
-    io.emit('message', getPoyta());
-  });  //io.emit('takeacard', {kortti}))  //Kortti on se kortti joka juuri nostettiin
+//io.emit('takeacard', {kortti}))  //Kortti on se kortti joka juuri nostettiin
 
-  sock.on('piirto', ({x,y}) => io.emit('piirto', {x,y}))
+  sock.on('piirto', ({x,y}) => io.emit('piirto', {x,y}));
+
+  sock.on('takeacard', () => {
+    const flipattu = takeCard().kuvake;
+    console.log(flipattu);
+    fs.readFile(__dirname + `/public/images/${flipattu}`, function(err, buf){
+      if (err) throw console.error("IMAGE EI TOIMINU");
+      sock.emit('flipped', { image: true, buffer: buf.toString('base64') });
+      console.log('image file is initialized');
+    });
+  });
+
 });
+
+
 
 
 server.on('error', (err) => {

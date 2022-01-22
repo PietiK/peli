@@ -38,11 +38,22 @@ const getBoard = (canvas) => {
   }
   return {fillRect};
 }
+/*
+const rendercard = (polku) => {
+  const table = document.querySelector("#tablecards");
+  const kuva = document.createElement('img');
+  kuva.src = polku;
 
+  table.appendChild(kuva);
+}
+*/
 (() => {
+ 
   const sock = io();
 
   const canvas = document.querySelector('canvas'); 
+  var ctx = canvas.getContext('2d');
+
   const {fillRect} = getBoard(canvas); //turhaa lopulta
   const onClick = (e) => {          //turhaa lopulta
     const { x, y } = getClickCoordinates(canvas, e);
@@ -58,8 +69,15 @@ const getBoard = (canvas) => {
   const pakka = document.querySelector('#pakka');
   const pakkaClick = (e) => {
     console.log("PAKKA KLIKATTU");
-    sock.emit('takeacard', {poyta});
-  }
+    sock.emit('takeacard');
+  };
+  sock.on("flipped", function(info) {
+  if (info.image) {
+    var img = new Image();
+    img.src = 'data:image/png;base64,' + info.buffer;
+    ctx.drawImage(img, 0, 0);
+  };
+});
 
   pakka.addEventListener('click', pakkaClick);
 
