@@ -72,12 +72,13 @@ const rendercard = (polku) => {
     sock.emit('takeacard');
   };
   sock.on("flipped", function(info) {
-  if (info.image) {
-    var img = new Image();
-    img.src = 'data:image/png;base64,' + info.buffer;
-    ctx.drawImage(img, 0, 0);
-  };
-});
+    if (info.image) {
+      var img = new Image();
+      img.src = 'data:image/png;base64,' + info.buffer;
+      document.querySelector("#tablecards").appendChild(img)
+      //ctx.drawImage(img, 0, 0);
+    };
+  });
 
   pakka.addEventListener('click', pakkaClick);
 
