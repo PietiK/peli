@@ -22,6 +22,12 @@ const createPlayers = () => {
 
   clearPlayers();
 
+  const makeNewPlayer = (playersock) => {
+    //TODO
+    //turn 3 cards into money
+
+  }
+
   return {addPlayer, getPlayers, nextTurn, currentTurn}
 }
 

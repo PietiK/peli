@@ -17,51 +17,16 @@ const onChatSubmitted = (sock) => (e) => {
   sock.emit('message', teksti);
 }
 
-const getClickCoordinates = (element, ev) => {
-  const { top, left } = element.getBoundingClientRect();
-  const { clientX, clientY } = ev;
-
-  return {
-    x: clientX - left,
-    y: clientY - top
-  };
-};
-
-//Renderöi piirtoruudun
-//Turha lopulta
-const getBoard = (canvas) => {
-
-  const ctx = canvas.getContext('2d');
-  const fillRect = (x, y) => {
-    //ctx.fillStyle = color;
-    ctx.fillRect(x,y,20,20);
-  }
-  return {fillRect};
-}
-
 //Sell ship or hire person
 //TODO
 //Add money to players cash or remove cash
 //Add person to players inventory
 //move ship to dump pile
-const sellorbuy = (onecard) => {
-  log(onecard);
-} 
+
 
 (() => {
  
   const sock = io();
-
-  const canvas = document.querySelector('canvas'); 
-  var ctx = canvas.getContext('2d');
-
-  const {fillRect} = getBoard(canvas); //turhaa lopulta
-  const onClick = (e) => {          //turhaa lopulta
-    const { x, y } = getClickCoordinates(canvas, e);
-    sock.emit('piirto', {x,y});
-  };
-  canvas.addEventListener('click', onClick);  //Piirto
-  sock.on('piirto', ({x,y}) => fillRect(x,y));
 
   sock.on('message', log);
 
@@ -76,10 +41,7 @@ const sellorbuy = (onecard) => {
 
   /**
    * Flipping a card
-   * -Renders card image 
-   * TODO
-   * -Make cards fit the screen better
-   * -Add eventlisteners to cards
+   * -Renders card image and makes it clickable
    */
   sock.on("flipped", function(info, iidee) {
     if (info.image) {
@@ -90,13 +52,23 @@ const sellorbuy = (onecard) => {
       img.setAttribute("id", iidee);
       document.querySelector("#tablecards").appendChild(img);
       //Make images clickable so player can interact with them
-      //TODO only player whose turn it is can interact with cards
       document.querySelector(`#${iidee}`).addEventListener('click', event => {
         sellorbuy(iidee);
       });
     };
   });
 
+  //Buy phase button eventlistener
+  const phaseClick = (e) => {
+    sock.emit('buyPhase');
+  }
+  document.querySelector('#phase').addEventListener('click', phaseClick);
+
+  const sellorbuy = (cardId) => {
+    sock.emit('sellorbuy', cardId);
+  } 
+
+  //Next turn button eventlistener
   const turnClick = (e) => {
     sock.emit('nextTurn');
   }

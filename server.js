@@ -20,17 +20,12 @@ const {addPlayer, getPlayers, nextTurn, currentTurn} = createPlayers();
 createPlayers();
 
 io.on('connection', (sock) => {
+  var isIt = false;
   //Add player to connected players on connection
   addPlayer(sock.id);
 
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
-  //sock.emit('deck', getDeck());
-
-  /**
-   * Drawing on canvas, useless
-   */
-  sock.on('piirto', ({x,y}) => io.emit('piirto', {x,y}));
 
   /**
    * Flipping a card
@@ -38,7 +33,7 @@ io.on('connection', (sock) => {
    * -card actions
    */
   sock.on('takeacard', () => {
-    if(sock.id === currentTurn()) { //Check if it's this players turn
+    if(sock.id === currentTurn() && !isIt) { //Check if it's this players turn
       const flipattu = takeCard();
     
       const kuvake = flipattu.kuvake;
@@ -67,9 +62,24 @@ io.on('connection', (sock) => {
     }
   });
 
+  sock.on('buyPhase', () => {
+    if(sock.id === currentTurn() && !isIt) { //Check if it's this players turn
+      isIt = true;
+      //TODO 
+      //- allow buying and selling
+      //- let next player buy
+      sock.on('sellorbuy', (cardId) => {
+        console.log(cardId);
+        //Buy or sell card
+      })
+    }
+  });
+
   sock.on('nextTurn', () => {
-    if(sock.id === currentTurn()) { //Check if it's this players turn
+    if(sock.id === currentTurn() && isIt) { //Check if it's this players turn
+      //change to next player
       nextTurn();
+      isIt = false;
     }
   });
 
