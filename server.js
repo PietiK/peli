@@ -4,33 +4,73 @@ const socketio = require('socket.io');
 const path = require('path');
 const app = express();
 const createDeck = require('./deck-functions');
+const createPlayers = require('./turn_functions');
 
 const fs = require('fs');
+const { table } = require('console');
 
 app.use(express.static(path.join(__dirname, "public")));
 
 const server = http.createServer(app);
 const io = socketio(server);
 
-const {newDeck, getDeck, getPoyta, takeCard} = createDeck();
+const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip} = createDeck();
+const {addPlayer, getPlayers, nextTurn, currentTurn} = createPlayers();
+
+createPlayers();
 
 io.on('connection', (sock) => {
+  //Add player to connected players on connection
+  addPlayer(sock.id);
+
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
   //sock.emit('deck', getDeck());
 
-//io.emit('takeacard', {kortti}))  //Kortti on se kortti joka juuri nostettiin
-
+  /**
+   * Drawing on canvas, useless
+   */
   sock.on('piirto', ({x,y}) => io.emit('piirto', {x,y}));
 
+  /**
+   * Flipping a card
+   * TODO
+   * -card actions
+   */
   sock.on('takeacard', () => {
-    const flipattu = takeCard().kuvake;
-    console.log(flipattu);
-    fs.readFile(__dirname + `/public/images/${flipattu}`, function(err, buf){
-      if (err) throw console.error("IMAGE EI TOIMINU");
-      sock.emit('flipped', { image: true, buffer: buf.toString('base64') });
-      console.log('image file is initialized');
-    });
+    if(sock.id === currentTurn()) { //Check if it's this players turn
+      const flipattu = takeCard();
+    
+      const kuvake = flipattu.kuvake;
+      //Send card image to client
+      fs.readFile(__dirname + `/public/images/${kuvake}`, function(err, buf){
+        if(kuvake != ''){
+          io.emit('flipped', { image: true, buffer: buf.toString('base64') }, flipattu.id);
+        }
+      });
+  
+      //If card is a ship, player can fight it if they want
+      //Check if table already has same color ship
+      if(flipattu.tyyppi === 'ship') {
+        //Check if poyta contains ship of same color
+        //if yes -> {
+          //if(player[i].attackpoints >= flipattu.attackpoints) {
+            //destroyShip();
+            //TODO remove ship from players' screens
+          //}
+          //else {clearTable() -> payJesters() -> nextTurn()}
+        //}
+        //if no -> {
+        // do nothing but let the player destroy the ship if they want to
+        //}
+      }
+    }
+  });
+
+  sock.on('nextTurn', () => {
+    if(sock.id === currentTurn()) { //Check if it's this players turn
+      nextTurn();
+    }
   });
 
 });

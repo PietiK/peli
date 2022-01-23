@@ -1,7 +1,7 @@
 //let module = require('./fullDeck');
 const sailors = [
   {
-    id : '0',
+    id : 'i0',
     tyyppi: 'sailor',
     price: 3,
     vp: 1,
@@ -9,7 +9,7 @@ const sailors = [
     kuvake: 'sailor1.png',
   },
   {
-    id : '1',
+    id : 'i1',
     tyyppi: 'sailor',
     price: 3,
     vp: 1,
@@ -17,7 +17,7 @@ const sailors = [
     kuvake: 'sailor1.png',
   },
   {
-    id : '2',
+    id : 'i2',
     tyyppi: 'sailor',
     price: 3,
     vp: 1,
@@ -25,7 +25,7 @@ const sailors = [
     kuvake: 'sailor1.png',
   },
   {
-    id : '3',
+    id : 'i3',
     tyyppi: 'sailor',
     price: 3,
     vp: 1,
@@ -33,7 +33,7 @@ const sailors = [
     kuvake: 'sailor1.png',
   },
   {
-    id : '4',
+    id : 'i4',
     tyyppi: 'sailor',
     price: 3,
     vp: 1,
@@ -41,7 +41,7 @@ const sailors = [
     kuvake: 'sailor1.png',
   },
   {
-    id : '5',
+    id : 'i5',
     tyyppi: 'sailor',
     price: 3,
     vp: 1,
@@ -49,7 +49,7 @@ const sailors = [
     kuvake: 'sailor1.png',
   },
   {
-    id : '6',
+    id : 'i6',
     tyyppi: 'sailor',
     price: 3,
     vp: 1,
@@ -57,7 +57,7 @@ const sailors = [
     kuvake: 'sailor1.png',
   },
   {
-    id : '7',
+    id : 'i7',
     tyyppi: 'sailor',
     price: 5,
     vp: 2,
@@ -65,7 +65,7 @@ const sailors = [
     kuvake: 'sailor2.png',
   },
   {
-    id : '8',
+    id : 'i8',
     tyyppi: 'sailor',
     price: 5,
     vp: 2,
@@ -73,7 +73,7 @@ const sailors = [
     kuvake: 'sailor2.png',
   },
   {
-    id : '9',
+    id : 'i9',
     tyyppi: 'sailor',
     price: 7,
     vp: 3,
@@ -84,7 +84,7 @@ const sailors = [
 
 const captains = [
   {
-    id : '10',
+    id : 'i10',
     kuvake: 'captain.png',
     tyyppi: 'captain',
     price: 4,
@@ -92,7 +92,7 @@ const captains = [
     item: 'ankkuri'
   },
   {
-    id : '11',
+    id : 'i11',
     kuvake: 'captain.png',
     tyyppi: 'captain',
     price: 4,
@@ -100,7 +100,7 @@ const captains = [
     item: 'ankkuri'
   },
   {
-    id : '12',
+    id : 'i12',
     kuvake: 'captain.png',
     tyyppi: 'captain',
     price: 4,
@@ -108,7 +108,7 @@ const captains = [
     item: 'ankkuri'
   },
   {
-    id : '13',
+    id : 'i13',
     kuvake: 'captain.png',
     tyyppi: 'captain',
     price: 4,
@@ -116,7 +116,7 @@ const captains = [
     item: 'ankkuri'
   },
   {
-    id : '14',
+    id : 'i14',
     kuvake: 'captain.png',
     tyyppi: 'captain',
     price: 4,
@@ -127,7 +127,7 @@ const captains = [
 
 const traders = [
   {
-    id : '15',
+    id : 'i15',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -135,7 +135,7 @@ const traders = [
     kuvake: 'tradersininen.png',
   },
   {
-    id : '16',
+    id : 'i16',
     tyyppi: 'trader',
     price: 5,
     vp: 2,
@@ -143,7 +143,7 @@ const traders = [
     kuvake: 'tradersininen.png',
   },
   {
-    id : '17',
+    id : 'i17',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -151,7 +151,7 @@ const traders = [
     kuvake: 'traderkeltainen.png',
   },
   {
-    id : '18',
+    id : 'i18',
     tyyppi: 'trader',
     price: 5,
     vp: 2,
@@ -159,7 +159,7 @@ const traders = [
     kuvake: 'traderkeltainen.png',
   },
   {
-    id : '19',
+    id : 'i19',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -167,7 +167,7 @@ const traders = [
     kuvake: 'traderpunainen.png',
   },
   {
-    id : '20',
+    id : 'i20',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -175,7 +175,7 @@ const traders = [
     kuvake: 'traderpunainen.png',
   },
   {
-    id : '21',
+    id : 'i21',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -183,7 +183,7 @@ const traders = [
     kuvake: 'tradervihre.png',
   },
   {
-    id : '22',
+    id : 'i22',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -191,7 +191,7 @@ const traders = [
     kuvake: 'tradervihre.png',
   },
   {
-    id : '23',
+    id : 'i23',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -199,7 +199,7 @@ const traders = [
     kuvake: 'tradermusta.png',
   },
   {
-    id : '24',
+    id : 'i24',
     tyyppi: 'trader',
     price: 3,
     vp: 1,
@@ -210,7 +210,7 @@ const traders = [
 
 const settlers = [
   {
-    id : '25',
+    id : 'i25',
     tyyppi: 'settler',
     price: 4,
     vp: 1,
@@ -218,7 +218,7 @@ const settlers = [
     kuvake: 'settler.png',
   },
   {
-    id : '26',
+    id : 'i26',
     tyyppi: 'settler',
     price: 4,
     vp: 1,
@@ -226,7 +226,7 @@ const settlers = [
     kuvake: 'settler.png',
   },
   {
-    id : '27',
+    id : 'i27',
     tyyppi: 'settler',
     price: 4,
     vp: 1,
@@ -234,7 +234,7 @@ const settlers = [
     kuvake: 'settler.png',
   },
   {
-    id : '28',
+    id : 'i28',
     tyyppi: 'settler',
     price: 4,
     vp: 1,
@@ -242,7 +242,7 @@ const settlers = [
     kuvake: 'settler.png',
   },
   {
-    id : '29',
+    id : 'i29',
     tyyppi: 'settler',
     price: 4,
     vp: 1,
@@ -253,7 +253,7 @@ const settlers = [
 
 const priests = [
   {
-    id : '30',
+    id : 'i30',
     tyyppi: 'priest',
     price: 4,
     vp: 1,
@@ -261,7 +261,7 @@ const priests = [
     kuvake: 'priest.png',
   },
   {
-    id : '31',
+    id : 'i31',
     tyyppi: 'priest',
     price: 4,
     vp: 1,
@@ -269,7 +269,7 @@ const priests = [
     kuvake: 'priest.png',
   },
   {
-    id : '32',
+    id : 'i32',
     tyyppi: 'priest',
     price: 4,
     vp: 1,
@@ -277,7 +277,7 @@ const priests = [
     kuvake: 'priest.png',
   },
   {
-    id : '33',
+    id : 'i33',
     tyyppi: 'priest',
     price: 4,
     vp: 1,
@@ -285,7 +285,7 @@ const priests = [
     kuvake: 'priest.png',
   },
   {
-    id : '34',
+    id : 'i34',
     tyyppi: 'priest',
     price: 4,
     vp: 1,
@@ -296,7 +296,7 @@ const priests = [
 
 const jots = [
   {
-    id : '35',
+    id : 'i35',
     tyyppi: 'jack of all trades',
     price: 6,
     vp: 1,
@@ -304,7 +304,7 @@ const jots = [
     kuvake: 'jackofalltrades.png',
   },
   {
-    id : '36',
+    id : 'i36',
     tyyppi: 'jack of all trades',
     price: 6,
     vp: 1,
@@ -312,7 +312,7 @@ const jots = [
     kuvake: 'jackofalltrades.png',
   },
   {
-    id : '37',
+    id : 'i37',
     tyyppi: 'jack of all trades',
     price: 6,
     vp: 1,
@@ -323,7 +323,7 @@ const jots = [
 
 const pirates = [
   {
-    id : '38',
+    id : 'i38',
     tyyppi: 'pirate',
     price: 5,
     vp: 1,
@@ -331,7 +331,7 @@ const pirates = [
     kuvake: 'pirate1.png',
   },
   {
-    id : '39',
+    id : 'i39',
     tyyppi: 'pirate',
     price: 7,
     vp: 2,
@@ -339,7 +339,7 @@ const pirates = [
     kuvake: 'pirate2.png',
   },
   {
-    id : '40',
+    id : 'i40',
     tyyppi: 'pirate',
     price: 9,
     vp: 3,
@@ -350,28 +350,28 @@ const pirates = [
 
 const governors = [
   {
-    id : '41',
+    id : 'i41',
     tyyppi: 'governor',
     price: 8,
     vp: 0,
     kuvake: 'governor.png',
   },
   {
-    id : '42',
+    id : 'i42',
     tyyppi: 'governor',
     price: 8,
     vp: 0,
     kuvake: 'governor.png',
   },
   {
-    id : '43',
+    id : 'i43',
     tyyppi: 'governor',
     price: 8,
     vp: 0,
     kuvake: 'governor.png',
   },
   {
-    id : '44',
+    id : 'i44',
     tyyppi: 'governor',
     price: 8,
     vp: 0,
@@ -381,28 +381,28 @@ const governors = [
 
 const mademoiselles = [
   {
-    id : '45',
+    id : 'i45',
     tyyppi: 'mademoiselle',
     price: 7,
     vp: 2,
     kuvake: 'mademoiselle2.png',
   },
   {
-    id : '46',
+    id : 'i46',
     tyyppi: 'mademoiselle',
     price: 7,
     vp: 2,
     kuvake: 'mademoiselle2.png',
   },
   {
-    id : '47',
+    id : 'i47',
     tyyppi: 'mademoiselle',
     price: 9,
     vp: 3,
     kuvake: 'mademoiselle3.png',
   },
   {
-    id : '48',
+    id : 'i48',
     tyyppi: 'mademoiselle',
     price: 9,
     vp: 3,
@@ -412,42 +412,42 @@ const mademoiselles = [
 
 const admirals = [
   {
-    id : '49',
+    id : 'i49',
     tyyppi: 'admiral',
     price: 5,
     vp: 1,
     kuvake: 'admiral1.png',
   },
   {
-    id : '50',
+    id : 'i50',
     tyyppi: 'admiral',
     price: 7,
     vp: 2,
     kuvake: 'admiral2.png',
   },
   {
-    id : '51',
+    id : 'i51',
     tyyppi: 'admiral',
     price: 7,
     vp: 2,
     kuvake: 'admiral2.png',
   },
   {
-    id : '52',
+    id : 'i52',
     tyyppi: 'admiral',
     price: 7,
     vp: 2,
     kuvake: 'admiral2.png',
   },
   {
-    id : '53',
+    id : 'i53',
     tyyppi: 'admiral',
     price: 9,
     vp: 3,
     kuvake: 'admiral3.png',
   },
   {
-    id : '54',
+    id : 'i54',
     tyyppi: 'admiral',
     price: 9,
     vp: 3,
@@ -457,35 +457,35 @@ const admirals = [
 
 const jesters = [
   {
-    id : '55',
+    id : 'i55',
       tyyppi: 'jester',
       price: 5,
       vp: 1,
       kuvake: 'jester1.png',
   },
   {
-    id : '56',
+    id : 'i56',
       tyyppi: 'jester',
       price: 7,
       vp: 2,
       kuvake: 'jester2.png',
   },
   {
-    id : '57',
+    id : 'i57',
       tyyppi: 'jester',
       price: 7,
       vp: 2,
       kuvake: 'jester2.png',
   },
   {
-    id : '58',
+    id : 'i58',
       tyyppi: 'jester',
       price: 7,
       vp: 2,
       kuvake: 'jester2.png',
   },
   {
-    id : '59',
+    id : 'i59',
       tyyppi: 'jester',
       price: 9,
       vp: 3,
@@ -495,7 +495,7 @@ const jesters = [
 
 const ships = [
   {
-    id : '60',
+    id : 'i60',
     tyyppi: 'ship',
     color: 'black',
     profit: 1,
@@ -503,7 +503,7 @@ const ships = [
     kuvake: 'ship_black21.png',
   },
   {
-    id : '61',
+    id : 'i61',
     tyyppi: 'ship',
     color: 'black',
     profit: 1,
@@ -511,7 +511,7 @@ const ships = [
     kuvake: 'ship_black21.png',
   },
   {
-    id : '62',
+    id : 'i62',
     tyyppi: 'ship',
     color: 'black',
     profit: 1,
@@ -519,7 +519,7 @@ const ships = [
     kuvake: 'ship_black21.png',
   },
   {
-    id : '63',
+    id : 'i63',
     tyyppi: 'ship',
     color: 'black',
     profit: 2,
@@ -527,7 +527,7 @@ const ships = [
     kuvake: 'ship_black42.png',
   },
   {
-    id : '64',
+    id : 'i64',
     tyyppi: 'ship',
     color: 'black',
     profit: 2,
@@ -535,7 +535,7 @@ const ships = [
     kuvake: 'ship_black42.png',
   },
   {
-    id : '65',
+    id : 'i65',
     tyyppi: 'ship',
     color: 'black',
     profit: 2,
@@ -543,7 +543,7 @@ const ships = [
     kuvake: 'ship_black42.png',
   },
   {
-    id : '66',
+    id : 'i66',
     tyyppi: 'ship',
     color: 'black',
     profit: 3,
@@ -551,7 +551,7 @@ const ships = [
     kuvake: 'ship_black73.png',
   },
   {
-    id : '67',
+    id : 'i67',
     tyyppi: 'ship',
     color: 'black',
     profit: 3,
@@ -559,7 +559,7 @@ const ships = [
     kuvake: 'ship_black73.png',
   },
   {
-    id : '68',
+    id : 'i68',
     tyyppi: 'ship',
     color: 'black',
     profit: 3,
@@ -567,7 +567,7 @@ const ships = [
     kuvake: 'ship_black_kallo3.png',
   },
   {
-    id : '69',
+    id : 'i69',
     tyyppi: 'ship',
     color: 'black',
     profit: 4,
@@ -577,7 +577,7 @@ const ships = [
   
 
   {
-    id : '70',
+    id : 'i70',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 1,
@@ -585,7 +585,7 @@ const ships = [
     kuvake: 'ship_yellow11.png',
   },
   {
-    id : '71',
+    id : 'i71',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 1,
@@ -593,7 +593,7 @@ const ships = [
     kuvake: 'ship_yellow11.png',
   },
   {
-    id : '72',
+    id : 'i72',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 1,
@@ -601,7 +601,7 @@ const ships = [
     kuvake: 'ship_yellow11.png',
   },
   {
-    id : '73',
+    id : 'i73',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 2,
@@ -609,7 +609,7 @@ const ships = [
     kuvake: 'ship_yellow12.png',
   },
   {
-    id : '74',
+    id : 'i74',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 2,
@@ -617,7 +617,7 @@ const ships = [
     kuvake: 'ship_yellow22.png',
   },
   {
-    id : '75',
+    id : 'i75',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 2,
@@ -625,7 +625,7 @@ const ships = [
     kuvake: 'ship_yellow22.png',
   },
   {
-    id : '76',
+    id : 'i76',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 3,
@@ -633,7 +633,7 @@ const ships = [
     kuvake: 'ship_yellow23.png',
   },
   {
-    id : '77',
+    id : 'i77',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 3,
@@ -641,7 +641,7 @@ const ships = [
     kuvake: 'ship_yellow43.png',
   },
   {
-    id : '78',
+    id : 'i78',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 3,
@@ -649,7 +649,7 @@ const ships = [
     kuvake: 'ship_yellow43.png',
   },
   {
-    id : '79',
+    id : 'i79',
     tyyppi: 'ship',
     color: 'yellow',
     profit: 4,
@@ -659,7 +659,7 @@ const ships = [
 
 
   {
-    id : '80',
+    id : 'i80',
     tyyppi: 'ship',
     color: 'red',
     profit: 1,
@@ -667,7 +667,7 @@ const ships = [
     kuvake: 'ship_red11.png',
   },
   {
-    id : '81',
+    id : 'i81',
     tyyppi: 'ship',
     color: 'red',
     profit: 1,
@@ -675,7 +675,7 @@ const ships = [
     kuvake: 'ship_red11.png',
   },
   {
-    id : '82',
+    id : 'i82',
     tyyppi: 'ship',
     color: 'red',
     profit: 1,
@@ -683,7 +683,7 @@ const ships = [
     kuvake: 'ship_red11.png',
   },
   {
-    id : '83',
+    id : 'i83',
     tyyppi: 'ship',
     color: 'red',
     profit: 2,
@@ -691,7 +691,7 @@ const ships = [
     kuvake: 'ship_red32.png',
   },
   {
-    id : '84',
+    id : 'i84',
     tyyppi: 'ship',
     color: 'red',
     profit: 2,
@@ -699,7 +699,7 @@ const ships = [
     kuvake: 'ship_red32.png',
   },
   {
-    id : '85',
+    id : 'i85',
     tyyppi: 'ship',
     color: 'red',
     profit: 2,
@@ -707,7 +707,7 @@ const ships = [
     kuvake: 'ship_red32.png',
   },
   {
-    id : '86',
+    id : 'i86',
     tyyppi: 'ship',
     color: 'red',
     profit: 3,
@@ -715,7 +715,7 @@ const ships = [
     kuvake: 'ship_red63.png',
   },
   {
-    id : '87',
+    id : 'i87',
     tyyppi: 'ship',
     color: 'red',
     profit: 3,
@@ -723,7 +723,7 @@ const ships = [
     kuvake: 'ship_red63.png',
   },
   {
-    id : '88',
+    id : 'i88',
     tyyppi: 'ship',
     color: 'red',
     profit: 3,
@@ -731,7 +731,7 @@ const ships = [
     kuvake: 'ship_red_kallo3.png',
   },
   {
-    id : '89',
+    id : 'i89',
     tyyppi: 'ship',
     color: 'red',
     profit: 4,
@@ -741,7 +741,7 @@ const ships = [
 
 
   {
-    id : '90',
+    id : 'i90',
     tyyppi: 'ship',
     color: 'green',
     profit: 1,
@@ -749,7 +749,7 @@ const ships = [
     kuvake: 'ship_green11.png',
   },
   {
-    id : '91',
+    id : 'i91',
     tyyppi: 'ship',
     color: 'green',
     profit: 1,
@@ -757,7 +757,7 @@ const ships = [
     kuvake: 'ship_green11.png',
   },
   {
-    id : '92',
+    id : 'i92',
     tyyppi: 'ship',
     color: 'green',
     profit: 1,
@@ -765,7 +765,7 @@ const ships = [
     kuvake: 'ship_green11.png',
   },
   {
-    id : '93',
+    id : 'i93',
     tyyppi: 'ship',
     color: 'green',
     profit: 2,
@@ -773,7 +773,7 @@ const ships = [
     kuvake: 'ship_green21.png',
   },
   {
-    id : '94',
+    id : 'i94',
     tyyppi: 'ship',
     color: 'green',
     profit: 3,
@@ -781,7 +781,7 @@ const ships = [
     kuvake: 'ship_green33.png',
   },
   {
-    id : '95',
+    id : 'i95',
     tyyppi: 'ship',
     color: 'green',
     profit: 2,
@@ -789,7 +789,7 @@ const ships = [
     kuvake: 'ship_green32.png',
   },
   {
-    id : '96',
+    id : 'i96',
     tyyppi: 'ship',
     color: 'green',
     profit: 2,
@@ -797,7 +797,7 @@ const ships = [
     kuvake: 'ship_green32.png',
   },
   {
-    id : '97',
+    id : 'i97',
     tyyppi: 'ship',
     color: 'green',
     profit: 4,
@@ -805,7 +805,7 @@ const ships = [
     kuvake: 'ship_green54.png',
   },
   {
-    id : '98',
+    id : 'i98',
     tyyppi: 'ship',
     color: 'green',
     profit: 3,
@@ -813,7 +813,7 @@ const ships = [
     kuvake: 'ship_green53.png',
   },
   {
-    id : '99',
+    id : 'i99',
     tyyppi: 'ship',
     color: 'green',
     profit: 3,
@@ -823,7 +823,7 @@ const ships = [
 
 
   {
-    id : '100',
+    id : 'i100',
     tyyppi: 'ship',
     color: 'blue',
     profit: 1,
@@ -831,7 +831,7 @@ const ships = [
     kuvake: 'ship_blue11.png',
   },
   {
-    id : '101',
+    id : 'i101',
     tyyppi: 'ship',
     color: 'blue',
     profit: 1,
@@ -839,7 +839,7 @@ const ships = [
     kuvake: 'ship_blue11.png',
   },
   {
-    id : '102',
+    id : 'i102',
     tyyppi: 'ship',
     color: 'blue',
     profit: 1,
@@ -847,7 +847,7 @@ const ships = [
     kuvake: 'ship_blue11.png',
   },
   {
-    id : '103',
+    id : 'i103',
     tyyppi: 'ship',
     color: 'blue',
     profit: 2,
@@ -855,7 +855,7 @@ const ships = [
     kuvake: 'ship_blue12.png',
   },
   {
-    id : '104',
+    id : 'i104',
     tyyppi: 'ship',
     color: 'blue',
     profit: 2,
@@ -863,7 +863,7 @@ const ships = [
     kuvake: 'ship_blue22.png',
   },
   {
-    id : '105',
+    id : 'i105',
     tyyppi: 'ship',
     color: 'blue',
     profit: 2,
@@ -871,7 +871,7 @@ const ships = [
     kuvake: 'ship_blue22.png',
   },
   {
-    id : '106',
+    id : 'i106',
     tyyppi: 'ship',
     color: 'blue',
     profit: 3,
@@ -879,7 +879,7 @@ const ships = [
     kuvake: 'ship_blue23.png',
   },
   {
-    id : '107',
+    id : 'i107',
     tyyppi: 'ship',
     color: 'blue',
     profit: 3,
@@ -887,7 +887,7 @@ const ships = [
     kuvake: 'ship_blue53.png',
   },
   {
-    id : '108',
+    id : 'i108',
     tyyppi: 'ship',
     color: 'blue',
     profit: 3,
@@ -895,7 +895,7 @@ const ships = [
     kuvake: 'ship_blue53.png',
   },
   {
-    id : '109',
+    id : 'i109',
     tyyppi: 'ship',
     color: 'blue',
     profit: 4,
@@ -906,25 +906,25 @@ const ships = [
 
 const taxes = [
   {
-    id : '110',
+    id : 'i110',
     tyyppi: 'tax',
     funk: 'miekka',
     kuvake: 'taxmiekka.png',
   },
   {
-    id : '111',
+    id : 'i111',
     tyyppi: 'tax',
     funk: 'miekka',
     kuvake: 'taxkilpi.png',
   },
   {
-    id : '112',
+    id : 'i112',
     tyyppi: 'tax',
     funk: 'kilpi',
     kuvake: 'taxkilpi.png',
   },
   {
-    id : '113',
+    id : 'i113',
     tyyppi: 'tax',
     funk: 'kilpi',
     kuvake: 'taxkilpi.png',
@@ -933,7 +933,7 @@ const taxes = [
 
 const expeditions = [
   {
-    id : '114',
+    id : 'i114',
     tyyppi: 'expedition',
     goal: ['ankkuri','ankkuri'],
     profit: 2,
@@ -941,7 +941,7 @@ const expeditions = [
     kuvake: '',
   },
   {
-    id : '115',
+    id : 'i115',
     tyyppi: 'expedition',
     goal: ['risti','risti'],
     profit: 2,
@@ -949,7 +949,7 @@ const expeditions = [
     kuvake: '',
   },
   {
-    id : '116',
+    id : 'i116',
     tyyppi: 'expedition',
     goal: ['talo','talo'],
     profit: 2,
@@ -957,7 +957,7 @@ const expeditions = [
     kuvake: '',
   },
   {
-    id : '117',
+    id : 'i117',
     tyyppi: 'expedition',
     goal: ['ankkuri','ankkuri', 'talo'],
     profit: 3,
@@ -965,7 +965,7 @@ const expeditions = [
     kuvake: '',
   },
   {
-    id : '118',
+    id : 'i118',
     tyyppi: 'expedition',
     goal: ['risti','risti', 'talo'],
     profit: 3,
@@ -973,7 +973,7 @@ const expeditions = [
     kuvake: '',
   },
   {
-    id : '119',
+    id : 'i119',
     tyyppi: 'expedition',
     goal: ['ankkuri','risti','talo'],
     profit: 3,
@@ -1015,29 +1015,63 @@ function shuffle(array) {
   return array;
 }
 
-const mixedDeck = shuffle(startingDeck);
-
 const createDeck = () => {
-  let deck = mixedDeck;
+  let deck = shuffle(startingDeck);
   let poyta = [];
+  let dumppi = [];
 
+  /**
+   * Shuffle the dumped cards array to form a new deck
+   */
   const newDeck = () => {
-    deck = mixedDeck;  //Return deck to full
+    deck = shuffle(dumppi);  //Return deck to full
   }
 
   const getDeck = () => deck; //Return deck
 
-  const getPoyta = () => poyta;
+  /**
+   * @returns Table cards array
+   */
+  const getPoyta = () => {
+    return poyta;
+  }
 
+  /**
+   * Flips the top card of the deck
+   * adds that card to the table
+   * @returns Flipped card object
+   */
   const takeCard = () => {
     const nostettu = deck.shift();
-    poyta.concat(nostettu);
-    console.log("NOSTETTU ", nostettu);
+    poyta.push(nostettu);
     return nostettu;
   }
 
+  /**
+   * Empty the table and add remaining cards to dump pile
+   */
+  const clearTable = () => {
+    var i = 0;
+    while ( i < poyta.length ) {
+        var item = poyta[i];
+        if (item.selected) {
+            poyta.splice(i,1);
+            dumppi.push(item);
+        }
+        else i++;
+    }
+  }
+
+  /**
+   * Move destroyed ship to dump pile
+   * since you can only destroy most recent ship, remove the most recent card from poyta
+   */
+  const destroyShip = () => {
+    dumppi.push(poyta.pop());
+  }
+
   return {
-    newDeck, getDeck, takeCard, getPoyta
+    newDeck, getDeck, takeCard, getPoyta, clearTable, destroyShip
   }
 
 }

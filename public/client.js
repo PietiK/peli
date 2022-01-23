@@ -38,15 +38,16 @@ const getBoard = (canvas) => {
   }
   return {fillRect};
 }
-/*
-const rendercard = (polku) => {
-  const table = document.querySelector("#tablecards");
-  const kuva = document.createElement('img');
-  kuva.src = polku;
 
-  table.appendChild(kuva);
-}
-*/
+//Sell ship or hire person
+//TODO
+//Add money to players cash or remove cash
+//Add person to players inventory
+//move ship to dump pile
+const sellorbuy = (onecard) => {
+  log(onecard);
+} 
+
 (() => {
  
   const sock = io();
@@ -68,19 +69,39 @@ const rendercard = (polku) => {
 
   const pakka = document.querySelector('#pakka');
   const pakkaClick = (e) => {
-    console.log("PAKKA KLIKATTU");
     sock.emit('takeacard');
   };
-  sock.on("flipped", function(info) {
+  pakka.addEventListener('click', pakkaClick);
+
+
+  /**
+   * Flipping a card
+   * -Renders card image 
+   * TODO
+   * -Make cards fit the screen better
+   * -Add eventlisteners to cards
+   */
+  sock.on("flipped", function(info, iidee) {
     if (info.image) {
       var img = new Image();
       img.src = 'data:image/png;base64,' + info.buffer;
-      document.querySelector("#tablecards").appendChild(img)
-      //ctx.drawImage(img, 0, 0);
+      img.setAttribute("width", 150);
+      img.setAttribute("height", 200);
+      img.setAttribute("id", iidee);
+      document.querySelector("#tablecards").appendChild(img);
+      //Make images clickable so player can interact with them
+      //TODO only player whose turn it is can interact with cards
+      document.querySelector(`#${iidee}`).addEventListener('click', event => {
+        sellorbuy(iidee);
+      });
     };
   });
 
-  pakka.addEventListener('click', pakkaClick);
+  const turnClick = (e) => {
+    sock.emit('nextTurn');
+  }
+  document.querySelector('#turn').addEventListener('click', turnClick);
 
+  
 
 })();
