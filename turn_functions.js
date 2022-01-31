@@ -12,7 +12,14 @@ const createPlayers = () => {
   const getPlayers = () => players;
   
   const nextTurn = () => {
-    _turn = current_turn++ % players.length;
+    if(players.length > 2){
+      _turn = current_turn++ % players.length;
+    } 
+    else{
+      if(_turn === 0) _turn = 1;
+      else _turn = 0
+    }
+      
     console.log("next turn triggered " , _turn);
   }
 
