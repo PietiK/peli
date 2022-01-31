@@ -1041,10 +1041,20 @@ const createDeck = () => {
    * adds that card to the table
    * @returns Flipped card object
    */
-  const takeCard = () => {
+  const flipCard = () => {
     const nostettu = deck.shift();
     poyta.push(nostettu);
     return nostettu;
+  }
+
+  /**
+   * Take the card from the top of deck
+   * Used to get coins
+   * @returns card object
+   */
+  const takeCard = () => {
+    const tempcard = deck.shift();
+    return tempcard;
   }
 
   /**
@@ -1071,7 +1081,7 @@ const createDeck = () => {
   }
 
   return {
-    newDeck, getDeck, takeCard, getPoyta, clearTable, destroyShip
+    newDeck, getDeck, takeCard, getPoyta, clearTable, destroyShip, flipCard
   }
 
 }

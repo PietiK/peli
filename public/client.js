@@ -34,7 +34,7 @@ const onChatSubmitted = (sock) => (e) => {
 
   const pakka = document.querySelector('#pakka');
   const pakkaClick = (e) => {
-    sock.emit('takeacard');
+    sock.emit('flipcard');
   };
   pakka.addEventListener('click', pakkaClick);
 
@@ -57,6 +57,16 @@ const onChatSubmitted = (sock) => (e) => {
       });
     };
   });
+  
+  /**
+   * Clear table
+   */
+  sock.on('cleartable', function() {
+    const myNode = document.querySelector('#tablecards');
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.lastChild);
+    }
+  });
 
   //Buy phase button eventlistener
   const phaseClick = (e) => {
@@ -65,7 +75,7 @@ const onChatSubmitted = (sock) => (e) => {
   document.querySelector('#phase').addEventListener('click', phaseClick);
 
   const sellorbuy = (cardId) => {
-    sock.emit('sellorbuy', cardId);
+      sock.emit('sellorbuy', cardId);
   } 
 
   //Next turn button eventlistener

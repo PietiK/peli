@@ -7,22 +7,65 @@ const createDeck = require('./deck-functions');
 const createPlayers = require('./turn_functions');
 
 const fs = require('fs');
-const { table } = require('console');
+const { table, clear } = require('console');
 
 app.use(express.static(path.join(__dirname, "public")));
 
 const server = http.createServer(app);
 const io = socketio(server);
 
-const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip} = createDeck();
-const {addPlayer, getPlayers, nextTurn, currentTurn} = createPlayers();
+const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip, flipCard} = createDeck();
+const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, changephase} = createPlayers();
+
+//Make a new player
+const makeNewPlayer = (playersock) => {
+  player = new newPlayer(playersock);
+  addPlayer(playersock);
+}
+//Player object
+class newPlayer {
+
+  constructor(id) {
+    this._id = id;
+    this._moneyCards = [];
+    this._money = this._moneyCards.length;
+    this._inventory = [];
+    this._attackpoints = 0;
+    this._victorypoints = 0;
+
+    this._moneyCards.push(takeCard());
+    this._moneyCards.push(takeCard());
+    this._moneyCards.push(takeCard());
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  get money() {
+    return this._money;
+  }
+
+  set money(numero){
+    var nummer = this._money;
+    this._money = nummer - numero;
+  }
+
+  get attackpoints() {
+    return this._attackpoints;
+  }
+
+  get moneyCards() {
+    return this._moneyCards;
+  }
+
+}
 
 createPlayers();
 
 io.on('connection', (sock) => {
-  var isIt = false;
   //Add player to connected players on connection
-  addPlayer(sock.id);
+  makeNewPlayer(sock.id);
 
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
@@ -32,9 +75,9 @@ io.on('connection', (sock) => {
    * TODO
    * -card actions
    */
-  sock.on('takeacard', () => {
-    if(sock.id === currentTurn() && !isIt) { //Check if it's this players turn
-      const flipattu = takeCard();
+  sock.on('flipcard', () => {
+    if(sock.id === currentTurn()) { //Check if it's this players turn
+      const flipattu = flipCard();
     
       const kuvake = flipattu.kuvake;
       //Send card image to client
@@ -63,23 +106,33 @@ io.on('connection', (sock) => {
   });
 
   sock.on('buyPhase', () => {
-    if(sock.id === currentTurn() && !isIt) { //Check if it's this players turn
-      isIt = true;
+    console.log(sock.id, currentTurn());
+    if(sock.id === currentTurn()) { //Check if it's this players turn
+      if(currentBuyer() === '') nextBuyer();
       //TODO 
       //- allow buying and selling
       //- let next player buy
-      sock.on('sellorbuy', (cardId) => {
-        console.log(cardId);
-        //Buy or sell card
-      })
+    }
+  });
+
+  sock.on('sellorbuy', (cardId) => {
+    if(sock.id === currentBuyer()){ //Check if it's this player's turn to buy
+      console.log(sock.id, " ONKO ", currentBuyer());
+      console.log(cardId);
+      //TODO
+      //Buy or sell card
+      //Check if each player has had their turn to buy
+      //If player has mademoiselle, admiral etc. -> abilities
+      nextBuyer();
     }
   });
 
   sock.on('nextTurn', () => {
-    if(sock.id === currentTurn() && isIt) { //Check if it's this players turn
+    if(sock.id === currentTurn()) { //Check if it's this players turn
       //change to next player
+      clearTable();
+      io.emit('cleartable');
       nextTurn();
-      isIt = false;
     }
   });
 

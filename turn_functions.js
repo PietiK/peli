@@ -1,11 +1,9 @@
 const createPlayers = () => {
-  let players;
+  let players = [];
   let current_turn = 0;
   let _turn = 0;
-
-  const clearPlayers = () => {
-    players = [];
-  }
+  let buyer = '';
+  let _laskuri = 0;
 
   const addPlayer = (playerSock) => {
     players.push(playerSock);
@@ -20,15 +18,18 @@ const createPlayers = () => {
 
   const currentTurn = () => players[_turn];
 
-  clearPlayers();
-
-  const makeNewPlayer = (playersock) => {
-    //TODO
-    //turn 3 cards into money
-
+  const nextBuyer = () => {
+    _laskuri = current_turn++ % players.length;
+    console.log("Seuraava ostaja " , players[_laskuri]);
+    buyer = players[_laskuri];
+    console.log(buyer);
   }
 
-  return {addPlayer, getPlayers, nextTurn, currentTurn}
+  const currentBuyer = () => {
+    return buyer
+  }
+  
+  return {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer}
 }
 
 module.exports = createPlayers;
