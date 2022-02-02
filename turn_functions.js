@@ -32,11 +32,16 @@ const createPlayers = () => {
     console.log(buyer);
   }
 
+  const disconnectPlayer = (playerSock) => {
+    _turn--;
+    players.splice(players.indexOf(playerSock),1);
+  }
+
   const currentBuyer = () => {
     return buyer
   }
   
-  return {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer}
+  return {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer}
 }
 
 module.exports = createPlayers;

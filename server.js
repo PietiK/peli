@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip, flipCard} = createDeck();
-const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, changephase} = createPlayers();
+const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer} = createPlayers();
 
 //Make a new player
 const makeNewPlayer = (playersock) => {
@@ -66,6 +66,7 @@ createPlayers();
 io.on('connection', (sock) => {
   //Add player to connected players on connection
   makeNewPlayer(sock.id);
+  console.log("Player connected ", sock.id);
 
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
@@ -134,6 +135,13 @@ io.on('connection', (sock) => {
       io.emit('cleartable');
       nextTurn();
     }
+  });
+
+
+  sock.on('disconnect', function(){
+    console.log('A player disconnected');
+    disconnectPlayer(sock);
+    console.log(getPlayers());
   });
 
 });
