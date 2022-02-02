@@ -23,6 +23,11 @@ const onChatSubmitted = (sock) => (e) => {
 //Add person to players inventory
 //move ship to dump pile
 
+const removeCard = (cardId) => {
+  const myNode = document.querySelector('#tablecards');
+  myNode.removeChild(document.getElementById(cardId));
+}
+
 
 (() => {
  
@@ -76,6 +81,9 @@ const onChatSubmitted = (sock) => (e) => {
 
   const sellorbuy = (cardId) => {
       sock.emit('sellorbuy', cardId);
+      removeCard(cardId);
+      //TODO
+      //remove card from everyones' screen
   } 
 
   //Next turn button eventlistener
