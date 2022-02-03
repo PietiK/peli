@@ -76,6 +76,13 @@ io.on('connection', (sock) => {
    * TODO
    * -card actions
    */
+
+  getPoyta().map((card) => {
+    fs.readFile(__dirname + `/public/images/${card.kuvake}`, function(err, buf){
+      sock.emit('flipped', { image: true, buffer: buf.toString('base64')}, card.id);
+    });
+  });
+
   sock.on('flipcard', () => {
     if(sock.id === currentTurn()) { //Check if it's this players turn
       const flipattu = flipCard();
@@ -122,8 +129,8 @@ io.on('connection', (sock) => {
       console.log(cardId);
       io.emit("boughtorsold", cardId);
       //TODO
-      //Buy or sell card
-      //Check if each player has had their turn to buy
+      //Add or remove money from players
+      //Check if each player has had their turn to buy -> end buy phase and change to next players turn
       //If player has mademoiselle, admiral etc. -> abilities
       nextBuyer();
     }

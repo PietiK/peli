@@ -78,9 +78,7 @@ const removeCard = (cardId) => {
     }
   });
 
-  sock.on("boughtorsold", function(korttiId) {
-    removeCard(korttiId);
-  });
+
 
   //Buy phase button eventlistener
   const phaseClick = (e) => {
@@ -88,11 +86,15 @@ const removeCard = (cardId) => {
   }
   document.querySelector('#phase').addEventListener('click', phaseClick);
 
+  //Send request to buy or sell card
   const sellorbuy = (cardId) => {
       sock.emit('sellorbuy', cardId);
-      //TODO
-      //remove card from everyones' screen
   } 
+
+  //Server sends this to inform that this card needs to be removed
+  sock.on("boughtorsold", function(korttiId) {
+    removeCard(korttiId);
+  });
 
   //Next turn button eventlistener
   const turnClick = (e) => {
