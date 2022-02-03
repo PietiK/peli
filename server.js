@@ -7,7 +7,6 @@ const createDeck = require('./deck-functions');
 const createPlayers = require('./turn_functions');
 
 const fs = require('fs');
-const { table, clear } = require('console');
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -113,6 +112,15 @@ io.on('connection', (sock) => {
           // do nothing but let the player destroy the ship if they want to
           //}
         }
+        else if(flipattu.tyyppi === 'tax') { //tax card
+          //TODO
+          //Check if any player has more than 12 coins ->Remove half
+          //Give money to player with most attack or least victorypoints
+        }
+        else if(flipattu.tyyppi === 'expedition'){  //expedition
+          //TODO
+          //Add expedition to completable expeditions
+        }
       }
       
     }
@@ -151,6 +159,10 @@ io.on('connection', (sock) => {
       nextTurn();
       io.to(currentTurn()).emit('yourTurn');
     }
+  });
+
+  sock.on('getPlayers', function() {
+    io.emit('send-players', getPlayers());
   });
 
 

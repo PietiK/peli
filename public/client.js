@@ -49,6 +49,24 @@ const setTurn = () => {
   sock.on('message', log);
 
   document.querySelector('#chattiform').addEventListener('submit', onChatSubmitted(sock));
+  //TODO
+  //This players' inventory, money, victory- and attackpoints playercards1
+  sock.emit('getPlayers');
+  sock.on('send-players', (playerslist) => {
+    console.log(playerslist);
+    let counter = 0;
+    let indeks = playerslist.indexOf(sock.id, 0); //index of this player
+    console.log(indeks)
+    for(const p in playerslist) {
+      console.log(`#playercards${indeks}`);
+      document.querySelector(`#playercards${counter}`).innerHTML = playerslist[indeks];
+      counter++;
+      if(indeks+1<playerslist.length) indeks++;
+      else(indeks = 0);
+    }
+  });
+  //Every other players -//-
+  //stack? -> start from this player ->loop through each and attach that player to specific div id=playercards2-4
 
   const pakka = document.querySelector('#pakka');
   const pakkaClick = (e) => {
