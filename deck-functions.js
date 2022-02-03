@@ -1061,15 +1061,18 @@ const createDeck = () => {
    * Empty the table and add remaining cards to dump pile
    */
   const clearTable = () => {
+    console.log(poyta)
     var i = 0;
-    while ( i < poyta.length ) {
-        var item = poyta[i];
+    while ( poyta.length > 0) {
+      dumppi.push(poyta.pop());
+        /*var item = poyta[i];
         if (item.selected) {
             poyta.splice(i,1);
             dumppi.push(item);
         }
-        else i++;
+        else i++;*/
     }
+    console.log(poyta);
   }
 
   /**

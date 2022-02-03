@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip, flipCard} = createDeck();
-const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer} = createPlayers();
+const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer , setBuyPhase, getBuyPhase} = createPlayers();
 
 //Make a new player
 const makeNewPlayer = (playersock) => {
@@ -71,51 +71,56 @@ io.on('connection', (sock) => {
   sock.emit('message', "Liityit peliin");
   sock.on('message', (text) => io.emit('message', text));
 
-  /**
-   * Flipping a card
-   * TODO
-   * -card actions
-   */
-
+  
+  //Render cards that are already on the table
   getPoyta().map((card) => {
     fs.readFile(__dirname + `/public/images/${card.kuvake}`, function(err, buf){
       sock.emit('flipped', { image: true, buffer: buf.toString('base64')}, card.id);
     });
   });
 
+  /**
+   * Flipping a card
+   * TODO
+   * -card actions
+   */
   sock.on('flipcard', () => {
     if(sock.id === currentTurn()) { //Check if it's this players turn
-      const flipattu = flipCard();
+      if(!getBuyPhase()) {  //Only allow flipping cards when it's not buying time
+        const flipattu = flipCard();
     
-      const kuvake = flipattu.kuvake;
-      //Send card image to client
-      fs.readFile(__dirname + `/public/images/${kuvake}`, function(err, buf){
-        if(kuvake != ''){
-          io.emit('flipped', { image: true, buffer: buf.toString('base64') }, flipattu.id);
-        }
-      });
-  
-      //If card is a ship, player can fight it if they want
-      //Check if table already has same color ship
-      if(flipattu.tyyppi === 'ship') {
-        //Check if poyta contains ship of same color
-        //if yes -> {
-          //if(player[i].attackpoints >= flipattu.attackpoints) {
-            //destroyShip();
-            //TODO remove ship from players' screens
+        const kuvake = flipattu.kuvake;
+        //Send card image to client
+        fs.readFile(__dirname + `/public/images/${kuvake}`, function(err, buf){
+          if(kuvake != ''){
+            io.emit('flipped', { image: true, buffer: buf.toString('base64') }, flipattu.id);
+          }
+        });
+    
+        //If card is a ship, player can fight it if they want
+        //Check if table already has same color ship
+        if(flipattu.tyyppi === 'ship') {
+          //Check if poyta contains ship of same color
+          //if yes -> {i
+            //if(player[i].attackpoints >= flipattu.attackpoints) {
+              //destroyShip();
+              //TODO remove ship from players' screens
+            //}
+            //else {clearTable() -> payJesters() -> nextTurn()}
           //}
-          //else {clearTable() -> payJesters() -> nextTurn()}
-        //}
-        //if no -> {
-        // do nothing but let the player destroy the ship if they want to
-        //}
+          //if no -> {
+          // do nothing but let the player destroy the ship if they want to
+          //}
+        }
       }
+      
     }
   });
 
   sock.on('buyPhase', () => {
     console.log(sock.id, currentTurn());
     if(sock.id === currentTurn()) { //Check if it's this players turn
+      if(!getBuyPhase()) setBuyPhase();
       if(currentBuyer() === '') nextBuyer();
       //TODO 
       //- allow buying and selling
@@ -141,7 +146,9 @@ io.on('connection', (sock) => {
       //change to next player
       clearTable();
       io.emit('cleartable');
+      io.to(currentTurn()).emit('yourTurn');
       nextTurn();
+      io.to(currentTurn()).emit('yourTurn');
     }
   });
 

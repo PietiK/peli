@@ -1,3 +1,4 @@
+let myTurn = false;
 /**
  * Write text to chat for each player
  * @param {string} text 
@@ -33,10 +34,17 @@ const removeCard = (cardId) => {
   myNode.removeChild(document.getElementById(cardId));
 }
 
+const setTurn = () => {
+  myTurn ? myTurn = false : myTurn = true;
+}
+
 
 (() => {
  
   const sock = io();
+
+  
+  sock.on('yourTurn', setTurn());
 
   sock.on('message', log);
 
@@ -44,7 +52,9 @@ const removeCard = (cardId) => {
 
   const pakka = document.querySelector('#pakka');
   const pakkaClick = (e) => {
-    sock.emit('flipcard');
+    if(myTurn){
+      sock.emit('flipcard');
+    }
   };
   pakka.addEventListener('click', pakkaClick);
 
@@ -82,13 +92,13 @@ const removeCard = (cardId) => {
 
   //Buy phase button eventlistener
   const phaseClick = (e) => {
-    sock.emit('buyPhase');
+    if (myTurn) sock.emit('buyPhase');
   }
   document.querySelector('#phase').addEventListener('click', phaseClick);
 
   //Send request to buy or sell card
   const sellorbuy = (cardId) => {
-      sock.emit('sellorbuy', cardId);
+    sock.emit('sellorbuy', cardId);
   } 
 
   //Server sends this to inform that this card needs to be removed
@@ -98,7 +108,7 @@ const removeCard = (cardId) => {
 
   //Next turn button eventlistener
   const turnClick = (e) => {
-    sock.emit('nextTurn');
+    if(myTurn) sock.emit('nextTurn');
   }
   document.querySelector('#turn').addEventListener('click', turnClick);
 
