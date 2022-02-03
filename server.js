@@ -120,6 +120,7 @@ io.on('connection', (sock) => {
     if(sock.id === currentBuyer()){ //Check if it's this player's turn to buy
       console.log(sock.id, " ONKO ", currentBuyer());
       console.log(cardId);
+      io.emit("boughtorsold", cardId);
       //TODO
       //Buy or sell card
       //Check if each player has had their turn to buy

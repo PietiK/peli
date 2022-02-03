@@ -1,3 +1,8 @@
+/**
+ * Write text to chat for each player
+ * @param {string} text 
+ * text that gets sent  to chat
+ */
 const log = (text) => {
   const parent = document.querySelector('#tapahtumat');
   const el = document.createElement('li');
@@ -73,6 +78,10 @@ const removeCard = (cardId) => {
     }
   });
 
+  sock.on("boughtorsold", function(korttiId) {
+    removeCard(korttiId);
+  });
+
   //Buy phase button eventlistener
   const phaseClick = (e) => {
     sock.emit('buyPhase');
@@ -81,7 +90,6 @@ const removeCard = (cardId) => {
 
   const sellorbuy = (cardId) => {
       sock.emit('sellorbuy', cardId);
-      removeCard(cardId);
       //TODO
       //remove card from everyones' screen
   } 
