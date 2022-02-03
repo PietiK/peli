@@ -20,7 +20,7 @@ const createPlayers = () => {
   
   const nextTurn = () => {
     if(players.length > 2){
-      _turn = _turn++ % players.length;
+      _turn = current_turn++ % players.length;
     } 
     else{
       if(_turn === 0) _turn = 1;

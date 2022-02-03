@@ -66,6 +66,7 @@ createPlayers();
 io.on('connection', (sock) => {
   //Add player to connected players on connection
   makeNewPlayer(sock.id);
+  if(getPlayers.length < 1) nextTurn(); //Change to first connected player
   console.log("Player connected ", sock.id);
 
   sock.emit('message', "Liityit peliin");
