@@ -14,12 +14,12 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip, flipCard} = createDeck();
-const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer , setBuyPhase, getBuyPhase} = createPlayers();
+const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer , setBuyPhase, getBuyPhase, getPlayersocks, getPlayermoney} = createPlayers();
 
 //Make a new player
 const makeNewPlayer = (playersock) => {
   player = new newPlayer(playersock);
-  addPlayer(playersock);
+  addPlayer(player);
 }
 //Player object
 class newPlayer {
@@ -42,7 +42,7 @@ class newPlayer {
   }
 
   get money() {
-    return this._money;
+    return this._moneyCards.length;
   }
 
   set money(numero){
@@ -65,7 +65,7 @@ createPlayers();
 io.on('connection', (sock) => {
   //Add player to connected players on connection
   makeNewPlayer(sock.id);
-  if(getPlayers.length < 1) nextTurn(); //Change to first connected player
+  if(getPlayersocks.length < 1) nextTurn(); //Change to first connected player
   console.log("Player connected ", sock.id);
 
   sock.emit('message', "Liityit peliin");
@@ -162,14 +162,21 @@ io.on('connection', (sock) => {
   });
 
   sock.on('getPlayers', function() {
-    io.emit('send-players', getPlayers());
+    pelilista = getPlayersocks();
+    console.log("PELILISTA ", pelilista);
+    io.emit('send-players', pelilista);
+  });
+
+  sock.on('get-playermoney', (playerId) => {
+    let pelur = getPlayermoney(playerId);
+    io.emit('send-playermoney', pelur);
   });
 
 
   sock.on('disconnect', function(){
     console.log('A player disconnected');
     disconnectPlayer(sock);
-    console.log(getPlayers());
+    console.log(getPlayersocks());
   });
 
 });

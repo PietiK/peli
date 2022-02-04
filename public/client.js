@@ -55,18 +55,36 @@ const setTurn = () => {
   sock.on('send-players', (playerslist) => {
     console.log(playerslist);
     let counter = 0;
-    let indeks = playerslist.indexOf(sock.id, 0); //index of this player
-    console.log(indeks)
+    let indeks = playerslist.findIndex( x => x === sock.id); //index of this player
     for(const p in playerslist) {
-      console.log(`#playercards${indeks}`);
-      document.querySelector(`#playercards${counter}`).innerHTML = playerslist[indeks];
+      //Select player screen and add players id to it
+      //TODO
+      //Add players name instead of id
+      const playerscreen = document.querySelector(`#playercards${counter}`);
+      playerscreen.innerHTML = playerslist[indeks];
+
+      //Display each players' money and inventory cards on this
+      const hud = document.createElement("div");
+      hud.setAttribute("id", `hud${indeks}`);
+      hud.innerText = `hud${indeks}`;
+      playerscreen.appendChild(hud);
+
+      //Display each players money
+      const mani = document.createElement("p");
+      sock.emit('get-playermoney', playerslist[indeks]);
+      sock.on('send-playermoney', (manit) => {
+        mani.innerText = manit;
+      });
+      hud.appendChild(mani);
+
+      //Display inventorycards
+      const inv = document.createElement("p");
+
       counter++;
       if(indeks+1<playerslist.length) indeks++;
       else(indeks = 0);
     }
   });
-  //Every other players -//-
-  //stack? -> start from this player ->loop through each and attach that player to specific div id=playercards2-4
 
   const pakka = document.querySelector('#pakka');
   const pakkaClick = (e) => {
