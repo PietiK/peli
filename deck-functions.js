@@ -1036,6 +1036,11 @@ const createDeck = () => {
     return poyta;
   }
 
+  const getCard = (cardId) => {
+    let indeks = poyta.findIndex( x => x.id === cardId);
+    return poyta[indeks];
+  }
+
   /**
    * Flips the top card of the deck
    * adds that card to the table
@@ -1083,8 +1088,12 @@ const createDeck = () => {
     dumppi.push(poyta.pop());
   }
 
+  const dumpcard = (card) => {
+    dumppi.push(card);
+  }
+
   return {
-    newDeck, getDeck, takeCard, getPoyta, clearTable, destroyShip, flipCard
+    newDeck, getDeck, takeCard, getPoyta, clearTable, destroyShip, flipCard, getCard, dumpcard
   }
 
 }

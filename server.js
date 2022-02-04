@@ -13,8 +13,8 @@ app.use(express.static(path.join(__dirname, "public")));
 const server = http.createServer(app);
 const io = socketio(server);
 
-const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip, flipCard} = createDeck();
-const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer , setBuyPhase, getBuyPhase, getPlayersocks, getPlayermoney} = createPlayers();
+const {newDeck, getDeck, getPoyta, takeCard, clearTable, destroyShip, flipCard, getCard, dumpcard} = createDeck();
+const {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer , setBuyPhase, getBuyPhase, getPlayersocks, getPlayermoney, getPlayer} = createPlayers();
 
 //Make a new player
 const makeNewPlayer = (playersock) => {
@@ -56,6 +56,20 @@ class newPlayer {
 
   get moneyCards() {
     return this._moneyCards;
+  }
+
+  set moneyCards(amount) {
+    for(let i=0; i<amount; i++){
+      dumpcard(this.moneyCards.pop());
+    }
+  }
+
+  set inventory(card) {
+    this._inventory.push(card);
+  }
+
+  get inventory() {
+    return this._inventory;
   }
 
 }
@@ -139,9 +153,33 @@ io.on('connection', (sock) => {
 
   sock.on('sellorbuy', (cardId) => {
     if(sock.id === currentBuyer()){ //Check if it's this player's turn to buy
-      console.log(sock.id, " ONKO ", currentBuyer());
-      console.log(cardId);
-      io.emit("boughtorsold", cardId);
+      const thiscard = getCard(cardId);
+      if(thiscard.tyyppi === 'ship') {  //If ship -> sell
+        //TODO
+      } 
+      else if(thiscard.tyyppi === 'expedition' || thiscard.tyyppi === 'tax') { //Not purchaseable
+        //TODO
+      }
+      else{
+        //TODO
+        //Buy card
+        //check if player has enough money
+        //Remove card from table and add to player inventory
+        if(getPlayermoney(sock.id) >= thiscard.price) {
+          //Remove money from player and add card to inv
+          const peluri = getPlayer(sock.id);
+          peluri.moneyCards = thiscard.price;
+          peluri.inventory = thiscard;
+          console.log("tämä osti " + peluri.inventory);
+          //remove from table
+          io.emit("boughtorsold", cardId);
+        }
+        else{
+          //Not enough money, do nothing
+        }
+      }
+
+      
       //TODO
       //Add or remove money from players
       //Check if each player has had their turn to buy -> end buy phase and change to next players turn

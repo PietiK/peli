@@ -73,7 +73,7 @@ const setTurn = () => {
       const mani = document.createElement("p");
       sock.emit('get-playermoney', playerslist[indeks]);
       sock.on('send-playermoney', (manit) => {
-        mani.innerText = manit;
+        mani.innerText = "Rahhaa " + manit;
       });
       hud.appendChild(mani);
 
