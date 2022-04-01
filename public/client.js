@@ -41,7 +41,7 @@ const setTurn = () => {
 
 (() => {
  
-  const sock = io();
+  const sock = io.connect('http://localhost:8080');
 
   
   sock.on('yourTurn', setTurn());
@@ -65,7 +65,7 @@ const setTurn = () => {
 
       //Display each players' money and inventory cards on this
       const hud = document.createElement("div");
-      hud.setAttribute("id", `hud${indeks}`);
+      hud.setAttribute("id", `hud${playerslist[indeks]}`);
       hud.innerText = `hud${indeks}`;
       playerscreen.appendChild(hud);
 
@@ -78,7 +78,13 @@ const setTurn = () => {
       hud.appendChild(mani);
 
       //Display inventorycards
+      /*
       const inv = document.createElement("p");
+      sock.emit('get-playerinv', playerslist[indeks]);
+      sock.on('send-playerinv', (inventory) => {
+        console.log("pleijerinv" + inventory  );
+      })
+      */
 
       counter++;
       if(indeks+1<playerslist.length) indeks++;
@@ -93,7 +99,6 @@ const setTurn = () => {
     }
   };
   pakka.addEventListener('click', pakkaClick);
-
 
   /**
    * Flipping a card
@@ -123,6 +128,11 @@ const setTurn = () => {
       myNode.removeChild(myNode.lastChild);
     }
   });
+
+  sock.on('addtoinv', function(kortti) {
+    const thishud = document.querySelector(`#hud${sock.id}`);
+    thishud.innerText = "PERKELE OSTETTU";
+  })
 
 
 

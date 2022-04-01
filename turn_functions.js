@@ -64,7 +64,12 @@ const createPlayers = () => {
     return(players[indeks]);
   }
 
-  return {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer, setBuyPhase, getBuyPhase, getPlayersocks, getPlayermoney, getPlayer}
+  const getPlayerinv = (thisid) => {
+    let indeks = players.findIndex( x => x.id === thisid); //index of this player
+    return(players[indeks].inventory)
+  }
+
+  return {addPlayer, getPlayers, nextTurn, currentTurn, currentBuyer, nextBuyer, disconnectPlayer, setBuyPhase, getBuyPhase, getPlayersocks, getPlayermoney, getPlayer, getPlayerinv}
 }
 
 module.exports = createPlayers;
